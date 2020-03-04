@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+<canvas id="myCanvas" width="800" height="600" style="border:1px solid #d3d3d3;"></canvas>
+
+<p id="demo"></p>
+
+<script>
+var fruits = [{name:"Apple", quantity:20, color:"red"},
+			  {name:"Orange", quantity:10, color:"orange"},
+              {name:"Banana", quantity:15, color:"yellow"},
+              {name:"Kiwi", quantity:3, color:"green"},
+              {name:"Blueberry", quantity:5, color:"blue"},
+              {name:"Grapes", quantity:8, color:"purple"}
+              
+];
+
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+//I chose to make the bg gray because yellow was too hard to see on a bright surface. 
+ctx.fillStyle = "gray";
+ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
+
+for ( i = 0; i <= fruits.length; i++){
+	ctx.fillStyle = fruits[i].color;
+	ctx.font = "20px Arial";
+	//The +1 is used to properly format the name of the fruit
+    //because index [0] multiplied by 50 would be zero.
+    ctx.fillText( fruits[i].name, 10, (i + 1)*50 );
+    ctx.fillRect( 100, ((i + 1)*50 ) - 20 , fruits[i].quantity*20, 20);
+    ctx.fillText ( fruits[i].quantity, (fruits[i].quantity*20) + 125,((i + 1)*50 )  );
+};
+
+
+</script>
+
+</body>
+</html>
