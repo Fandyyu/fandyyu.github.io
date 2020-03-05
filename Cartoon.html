@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cartoon</title>
+</head>
+
+<body>
+
+<canvas id="canvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
+
+<script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+var grd = ctx.createLinearGradient(0, 0, 0, canvas.height);
+grd.addColorStop(0, "orange");
+grd.addColorStop(1, "white");
+
+ctx.fillStyle = grd;
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+ctx.font = "50px Arial";
+ctx.fillStyle = "black";
+ctx.fillText ("Cartoon",10,50);
+//grass
+ctx.fillStyle = "green";
+ctx.fillRect(0, 400, canvas.width, canvas.height);
+
+ctx.fillStyle = "black";
+ctx.fillRect(99,299,102,102 );
+//house
+ctx.fillStyle = "white";
+ctx.fillRect(100,300,100,100 );
+//door
+ctx.fillStyle = "brown";
+ctx.fillRect(160,340,30,60 );
+//window
+ctx.fillStyle = "blue";
+ctx.fillRect(110,340,45,45 );
+//middle window frame
+ctx.fillStyle = "white";
+ctx.fillRect(130,340,5,50 );
+ctx.fillRect(110,360,50,5 );
+//roof
+ctx.fillStyle = "#614937"; 
+ctx.beginPath();
+ctx.moveTo(99,300);
+ctx.lineTo(201,300);
+ctx.lineTo(150,250);
+ctx.fill();
+//sun
+ctx.fillStyle = "yellow";
+ctx.beginPath();
+ctx.arc(700, 100, 50, 0, Math.PI * 2, true); // Outer circle
+ctx.moveTo(110, 75);
+ctx.fill();
+//mountain
+ctx.fillStyle = "#607787"; 
+ctx.beginPath();
+ctx.moveTo(400,400);
+ctx.lineTo(600,120);
+ctx.lineTo(700,400);
+ctx.fill();
+//mountain shade
+ctx.fillStyle = "#4d6575"; 
+ctx.beginPath();
+ctx.moveTo(400,400);
+ctx.lineTo(600,120);
+ctx.lineTo(450,400);
+ctx.fill();
+//lake
+ctx.fillStyle = "cyan"; 
+ctx.beginPath();
+ctx.ellipse(canvas.width, canvas.height, 500, 150, 0, 0, 2 * Math.PI);
+ctx.fill();
+//cloud 1 left
+ctx.fillStyle = "white"; 
+ctx.beginPath();
+ctx.ellipse(100, 150, 50, 30, 0, 0, 2 * Math.PI);
+ctx.fill();
+ctx.beginPath();
+ctx.ellipse(150, 150, 50, 30, 0, 0, 2 * Math.PI);
+ctx.fill();
+ctx.beginPath();
+ctx.ellipse(130, 125, 50, 30, 0, 0, 2 * Math.PI);
+ctx.fill();
+//cloud 2 middle 
+ctx.beginPath();
+ctx.ellipse(300, 100, 50, 30, 0, 0, 2 * Math.PI);
+ctx.fill();
+ctx.beginPath();
+ctx.ellipse(350, 100, 50, 30, 0, 0, 2 * Math.PI);
+ctx.fill();
+ctx.beginPath();
+ctx.ellipse(330, 75, 50, 30, 0, 0, 2 * Math.PI);
+ctx.fill();
+// cloud 3 right
+ctx.beginPath();
+ctx.ellipse(650, 150, 50, 30, 0, 0, 2 * Math.PI);
+ctx.fill();
+ctx.beginPath();
+ctx.ellipse(700, 150, 50, 30, 0, 0, 2 * Math.PI);
+ctx.fill();
+ctx.beginPath();
+ctx.ellipse(680, 125, 50, 30, 0, 0, 2 * Math.PI);
+ctx.fill();
+
+</script>
+</body>
+</html>
