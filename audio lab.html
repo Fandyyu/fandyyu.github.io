@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<audio id="Creepy">
+  <source src="01.Looming Fear.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="Jazzy">
+  <source src="15.Singing For You.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="Diva">
+  <source src="07.Diva's Voice.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="Conference">
+  <source src="10.Conference.mp3" type="audio/mpeg">
+</audio>
+<audio id="Funk">
+  <source src="14.Shido Funk.mp3" type="audio/mpeg">
+</audio>
+
+
+
+
+<p>Click the buttons to play or pause the audio.</p>
+
+<button onclick="playAudio()" type="button">Creepy Audio</button>
+<button onclick="playAudioJazz()" type="button">Jazzy Audio</button>
+<button onclick="playAudioDiva()" type="button">Singing Audio</button>
+<button onclick="playAudioConference()" type="button">Conference Audio</button>
+<button onclick="playAudioFunk()" type="button">Funky Audio</button>
+
+<button onclick="pauseAudio()" type="button">Pause Audio</button> 
+
+<script>
+var x = document.getElementById("Creepy"); 
+var Jazz = document.getElementById("Jazzy"); 
+var Sing = document.getElementById("Diva"); 
+var Conference = document.getElementById("Conference"); 
+var Funk = document.getElementById("Funk"); 
+
+function playAudio() { 
+  x.play(); 
+} 
+function playAudioJazz() { 
+  Jazz.play(); 
+} 
+function playAudioDiva() { 
+  Sing.play(); 
+} 
+function playAudioConference() { 
+  Conference.play(); 
+} 
+function playAudioFunk() { 
+  Funk.play(); 
+}
+
+function pauseAudio() { 
+  x.pause(); 
+  Jazz.pause();
+  Sing.pause();
+  Conference.pause();
+  Funk.pause();
+} 
+
+</script>
+
+</body>
+</html>
