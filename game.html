@@ -1,0 +1,189 @@
+
+<!doctype html> 
+
+Fandy Yu
+
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>Fandy Phaser Game</title>
+    <script src="phaser.min.js"></script>
+ 
+</head>
+<body>
+
+<script type="text/javascript">
+
+    var config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 300 },
+            debug: false
+        }
+    },
+    scene: {
+        preload: preload,
+        create: create,
+        update: update
+    }
+	};
+	
+	
+	var player;
+	var platforms;
+	var cursors;	
+	var bombs;
+	var score = 0;
+	var life = 3;
+	var scoreText;
+	var lifeText;
+
+    var game = new Phaser.Game(config);
+
+    function preload ()
+    {
+        this.load.image('space', 'assets/space.png');
+        this.load.image('platform', 'assets/platform.png');
+        this.load.image('star', 'assets/star.png');
+        this.load.image('coin', 'assets/coin.png');
+        this.load.image('bomb', 'assets/bomb.png');
+    }
+
+    function create ()
+    {
+		this.add.image(400, 300, 'space');
+		platforms = this.physics.add.staticGroup();
+		
+		platforms.create(400, 600, 'platform').setScale(2).refreshBody();
+
+		platforms.create(10, 500, 'platform');
+		platforms.create(500, 500, 'platform');
+		platforms.create(600, 400, 'platform');
+		platforms.create(-100, 400, 'platform');
+		
+		platforms.create(400, 250, 'platform');
+		
+		player = this.physics.add.sprite(400, 300, 'star');
+
+		player.setBounce(0.1);
+		player.setCollideWorldBounds(true);
+		
+		player.body.setGravityY(0)
+		
+		coin = this.physics.add.group({
+			key: 'coin',
+			repeat: 11,
+			setXY: { x: 12, y: 0, stepX: 70 }
+		});
+		
+		scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFF' });
+		lifeText=	this.add.text(16, 42, 'life:  3', { fontSize: '32px', fill: '#FFF' });
+		
+        cursors = this.input.keyboard.createCursorKeys();
+
+		coin.children.iterate(function (child) {
+
+			child.setBounceY(Phaser.Math.FloatBetween(0.2, 0.4));
+			
+		});
+		
+		bombs = this.physics.add.group();
+		
+		this.physics.add.collider(player, platforms);
+		this.physics.add.collider(coin, platforms);
+		this.physics.add.collider(bombs, platforms);
+		
+		
+		this.physics.add.overlap(player, coin, collectCoin, null, this);
+		this.physics.add.collider(player, bombs, hitBomb, null, this);
+    }
+
+
+    function update ()
+    {
+        if (cursors.left.isDown)
+        {
+            player.setVelocityX(-160);
+
+
+        }
+        else if (cursors.right.isDown)
+        {
+            player.setVelocityX(160);
+
+ 
+        }
+        else
+        {
+            player.setVelocityX(0);
+
+
+        }
+
+        if (cursors.up.isDown && player.body.touching.down)
+        {
+            player.setVelocityY(-330);
+        } 
+	} 
+	
+	function collectCoin (player, coin)
+    {
+        coin.disableBody(true, true);
+		
+		score += 10;
+		scoreText.setText('Score: ' + score);
+		
+		if (score === 120)
+		{
+			this.physics.pause();
+			gameOver = true;
+		}
+    
+       
+
+        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+        var bomb = bombs.create(x, 16, 'bomb');
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        bomb.allowGravity = false;
+
+      
+	
+	}
+	
+	function hitBomb (player, bomb)
+{
+    life -= 1;
+	lifeText.setText('life: ' + life);
+
+  <!--  player.setTint(0xff0000); -->
+
+    if (life === 0 )
+	{
+		this.physics.pause();
+		gameOver = true;
+	}
+}
+	
+
+</script>
+
+
+
+
+
+   
+
+<!--<embed src="audio/01. 遺サレタ場所：丁.mp3" loop="true" autostart="true" width="2" height="0">
+
+-->
+
+
+</body>
+</html>
